@@ -2,7 +2,6 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/latam-challenge/pyspark-jupyter:917376', '.']
 images: ['gcr.io/latam-challenge/pyspark-jupyter:917376']
-
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['run', 'deploy', 'latam-challenge-run', '--image', 'gcr.io/latam-challenge/pyspark-jupyter:917376']
   env:
