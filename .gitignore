@@ -1,4 +1,3 @@
-data/*
 annotations.md
 infra/modules/provider/gcp_key.json
 
