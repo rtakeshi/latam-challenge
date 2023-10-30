@@ -20,7 +20,7 @@ ENV DATA_DIR /home/jovyan/work/data
 #copying and extracting
 COPY /data/raw/$ZIP_FILE /tmp/$ZIP_FILE
 RUN unzip /tmp/$ZIP_FILE -d /tmp/
-
+RUN ls -a /tmp/
 COPY /tmp/$UNZIP_FILE $DATA_DIR/$UNZIP_FILE
 RUN rm /tmp/$ZIP_FILE
 
