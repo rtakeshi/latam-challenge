@@ -17,7 +17,7 @@ ENV ZIP_FILE farmers-protest-tweets-2021-2-4.json.zip
 ENV DATA_DIR /home/jovyan/work/data
 
 #copying and extracting
-COPY $ZIP_FILE $DATA_DIR/
+COPY /data/raw/$ZIP_FILE $DATA_DIR/
 RUN unzip $DATA_DIR/$ZIP_FILE -d $DATA_DIR/
 
 RUN rm $DATA_DIR/$ZIP_FILE
