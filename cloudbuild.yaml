@@ -2,7 +2,8 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/latam-challenge/pyspark-jupyter:917376', '.']
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'latam-challenge-run', '--image', 'gcr.io/latam-challenge/pyspark-jupyter:917376', '--region', 'us-central1']  
+  args: ['run', 'deploy', 'latam-challenge-run', '--image', 'gcr.io/latam-challenge/pyspark-jupyter:917376', '--region', 'us-central1']
+  env:
   - 'CLOUDSDK_COMPUTE_ZONE=us-central1' 
   - 'CLOUDSDK_CORE_PROJECT=terraform-gcp-402419'  
 images: ['gcr.io/latam-challenge/pyspark-jupyter:917376']
