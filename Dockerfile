@@ -6,7 +6,6 @@ FROM jupyter/pyspark-notebook:spark-3.5.0
 #Copying requirements and installing in container
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
-RUN apt-get update && apt-get install -y unzip
 
 #Copying src files to be executed in the container
 COPY src /home/jovyan/work/src
