@@ -11,19 +11,9 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 COPY src /home/jovyan/work/src
 
 
-# Env variables
-ENV ZIP_FILE farmers-protest-tweets-2021-2-4.json.zip
-ENV UNZIP_FILE farmers-protest-tweets-2021-2-4.json
-ENV DATA_DIR /home/jovyan/work/data
-
 
 #copying and extracting
-COPY /data/raw/$ZIP_FILE /tmp/$ZIP_FILE
-RUN unzip /tmp/$ZIP_FILE -d /tmp/
-RUN ls -a /tmp/
-COPY /tmp/$UNZIP_FILE $DATA_DIR/$UNZIP_FILE
-RUN rm /tmp/$ZIP_FILE
-
+COPY /data/raw/ /home/jovyan/work/data/raw/
 
 
 # Exposed port for Jupyter notebook usage
