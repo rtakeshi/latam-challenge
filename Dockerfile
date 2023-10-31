@@ -12,22 +12,17 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
 #Copying src files to be executed in the container
 COPY src /home/jovyan/work/src
+#copying raw data
+COPY data/raw/ /home/jovyan/work/data/raw/
 
 #Copying test files
 COPY test /home/jovyan/work/test
 
-# Create a non-root user (you can name it whatever you like)
-# RUN useradd -ms /bin/bash pytest_user
-# Change permissions for the /workspace/test directory
+#Permission to test directory
+USER root
 RUN chmod -R 777 /home/jovyan/work/test
-
-
-
-#copying and extracting
-COPY data/raw/ /home/jovyan/work/data/raw/
-
-# Switch back to the non-root user
-# USER pytest_user
+RUN useradd -ms /bin/bash pytest_user
+USER pytest_user
 
 # Exposed port for Jupyter notebook usage
 EXPOSE 8888
