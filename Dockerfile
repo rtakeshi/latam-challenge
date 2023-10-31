@@ -18,10 +18,9 @@ COPY data/raw/ /home/jovyan/work/data/raw/
 #Copying test files
 COPY test /home/jovyan/work/test
 
-#Permission to test directory
+#Full permission to container work in jovyan user directories
 USER root
-RUN chmod -R 777 /home/jovyan/work/test \
-    && chmod -R 777 /home/jovyan 
+RUN chmod -R 777 /home/jovyan 
 
 USER jovyan
 # Exposed port for Jupyter notebook usage
