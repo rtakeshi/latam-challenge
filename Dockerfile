@@ -22,8 +22,7 @@ COPY test /home/jovyan/work/test
 USER root
 RUN chmod -R 777 /home/jovyan/work/test \
     && chmod -R 777 /home/jovyan 
-RUN useradd -ms /bin/bash pytest_user
-USER pytest_user
+
 
 # Exposed port for Jupyter notebook usage
 EXPOSE 8888
