@@ -4,10 +4,11 @@
 
 Using Terraform, I provisioned and created Google Cloud Storage to receive staging data.
 
-Future improvements:
+**Future improvements**:
 
 1. Declaring Cloud Build Trigger as Infrastructure as Code (IaC).
 2. Provisioning and creating a Cloud Run instance to receive the built container from the Artifact Registry.
+3. For this project, I will not implement VPC networking and IAM permissions. I will use a public Google Cloud Storage instance.
 
 ## Build - CI Pipeline for Artifact Registry
 
@@ -15,6 +16,11 @@ Future improvements:
 A CI pipeline was created via the Google Cloud Platform Console.
 
 The main goal of this pipeline is to continuously build and integrate my container into the Artifact Registry.
+
+**Future improvements**:
+
+1. Infra should have its own repository and CI/CD pipeline with Terraform lifecycle.
+2. We can implement DevSecOps at build time, incorporating SAST (Static Application Security Testing) to evaluate code vulnerabilities and test coverage, as well as SCA (Software Composition Analysis) to provide visibility into requirement vulnerabilities.
 
 ## Docker Container
 
