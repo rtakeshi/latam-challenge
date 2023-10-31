@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376', '.']
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376']
-images: ['terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376']
+    args: ['push', 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376']
+images: ['us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376']
