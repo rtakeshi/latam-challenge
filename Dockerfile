@@ -13,6 +13,16 @@ COPY src /home/jovyan/work/src
 #Copying test files
 COPY test /home/jovyan/work/test
 
+# Create a non-root user (you can name it whatever you like)
+USER root
+RUN useradd -ms /bin/bash pytest_user
+# Change permissions for the /workspace/test directory
+RUN chmod -R 777 /workspace/test
+# Switch back to the non-root user
+USER pytest_user
+# Set the working directory
+WORKDIR /workspace
+
 
 #copying and extracting
 COPY /data/raw/ /home/jovyan/work/data/raw/

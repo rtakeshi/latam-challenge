@@ -14,9 +14,10 @@ steps:
       - '-v'
       - '/home/jovyan/work/test:/workspace/test'
       - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
-      - '/bin/sh'
-      - '-c'
-      - 'chmod -R 777 /workspace/test && pytest /workspace/test'
+      - 'su-exec'
+      - 'pytest_user' 
+      - 'pytest'
+      - '/workspace/test'
     # Step 2: Tests
 
   - name: 'gcr.io/cloud-builders/docker'
