@@ -6,6 +6,19 @@ steps:
       - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
       - '.'
     # Step 1: Docker Build
+  
+  - name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'run'
+    - '--rm' 
+    - '-v'
+    - '/home/jovyan/work/test:/workspace/test'
+    - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
+    - 'chmod'
+    - '-R'
+    - '777'
+    - '/workspace/test'
+    # Step 2.0: Docker user permission to test directory
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
@@ -14,9 +27,12 @@ steps:
       - '-v'
       - '/home/jovyan/work/test:/workspace/test'
       - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
+      - 'chmod'
+      - '-R'
+      - '777'
       - 'pytest'
       - '/workspace/test'
-    # Step 2: Docker Run Tests
+    # Step 2.1: Docker Run Tests
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
