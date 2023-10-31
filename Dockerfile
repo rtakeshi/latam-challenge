@@ -23,7 +23,7 @@ USER root
 RUN chmod -R 777 /home/jovyan/work/test \
     && chmod -R 777 /home/jovyan 
 
-
+USER jovyan
 # Exposed port for Jupyter notebook usage
 EXPOSE 8888
 
