@@ -1,4 +1,18 @@
 steps:
+
+
+  - name: 'python'
+    entrypoint: 'python'
+    args: ['-m', 'pip', 'install', '--upgrade', 'pip']
+
+  - name: python
+    entrypoint: python
+    args: ['-m', 'pip', 'install', 'build', 'pytest', 'Flask', '--user']
+    
+  - name: 'python'
+    entrypoint: 'python'
+    args: ['-m', 'pytest', '--junitxml=${SHORT_SHA}_test_log.xml']
+
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -6,17 +20,6 @@ steps:
       - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
       - '.'
     # Step 1: Docker Build
-  
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'run'
-      - '--rm'
-      - '-v'
-      - '/home/jovyan/work/test:/workspace/test'
-      - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
-      - 'pytest'
-      - '/workspace/test'
-    # Step 2: Tests
 
   - name: 'gcr.io/cloud-builders/docker'
     args:

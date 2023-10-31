@@ -14,7 +14,6 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 COPY src /home/jovyan/work/src
 #copying raw data
 COPY data/raw/ /home/jovyan/work/data/raw/
-
 #Copying test files
 COPY test /home/jovyan/work/test
 
