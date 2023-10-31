@@ -17,11 +17,11 @@ COPY test /home/jovyan/work/test
 USER root
 RUN useradd -ms /bin/bash pytest_user
 # Change permissions for the /workspace/test directory
-RUN chmod -R 777 /workspace/test
+RUN chmod -R 777 /home/jovyan/work/test
 # Switch back to the non-root user
 USER pytest_user
 # Set the working directory
-WORKDIR /workspace
+WORKDIR /home/jovyan/work/test
 
 
 #copying and extracting
