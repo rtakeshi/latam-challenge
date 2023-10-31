@@ -8,17 +8,17 @@ steps:
     # Step 1: Docker Build
   
   - name: 'gcr.io/cloud-builders/docker'
-  args:
-    - 'run'
-    - '--rm' 
-    - '-v'
-    - '/home/jovyan/work/test:/workspace/test'
-    - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
-    - 'chmod'
-    - '-R'
-    - '777'
-    - '/workspace/test'
-    # Step 2.0: Docker user permission to test directory
+    args:
+      - 'run'
+      - '--rm' 
+      - '-v'
+      - '/home/jovyan/work/test:/workspace/test'
+      - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
+      - 'chmod'
+      - '-R'
+      - '777'
+      - '/workspace/test'
+      # Step 2.0: Docker user permission to test directory
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
