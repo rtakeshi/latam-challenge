@@ -15,7 +15,6 @@ steps:
     args:
       - 'run'
       - '-v'
-      - '/home/jovyan/work:/workspace'  
       - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
       - 'pytest'
-      - '/workspace/test'
+      - '/home/jovyan/work/test'
