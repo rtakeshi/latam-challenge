@@ -5,17 +5,21 @@ steps:
       - '-t'
       - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
       - '.'
+    # Step 1: Docker Build
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'run'
+      - '--rm'
+      - '-v'
+      - '/home/jovyan/work:/workspace'
+      - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
+      - 'pytest'
+      - '/workspace/test'
+    # Step 2: Docker Run Tests
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
-
-  - name: 'gcr.io/cloud-builders/docker'
-    args:
-      - 'run'
-      - '--rm' 
-      - '-v'
-      - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
-      - 'pytest'
-      - '/home/jovyan/work/test'
+    # Step 3: Docker Push to Artifact Registry
