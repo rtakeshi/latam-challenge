@@ -27,7 +27,8 @@ Unit tests executions will be done in build time with cloud build.
 **Future improvements**:
 
 1. Infra should have its own repository and CI/CD pipeline with Terraform lifecycle.
-2. We can implement DevSecOps at build time, incorporating SAST (Static Application Security Testing) to evaluate code vulnerabilities and test coverage, as well as SCA (Software Composition Analysis) to provide visibility into requirement vulnerabilities.
+2. The cloudbuild.yaml file is hard writen for my free trial account of GCP
+3. We can implement DevSecOps at build time, incorporating SAST (Static Application Security Testing) to evaluate code vulnerabilities and test coverage, as well as SCA (Software Composition Analysis) to provide visibility into requirement vulnerabilities.
 
 ## Docker Container
 
