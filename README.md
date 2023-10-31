@@ -1,5 +1,8 @@
 # LATAM Challenge Solution
 
+For challenge description go to: https://github.com/rtakeshi/latam-challenge/blob/main/latam-challenge.md
+
+
 ## Infra
 
 Using Terraform, I provisioned and created Google Cloud Storage to receive staging data.
@@ -28,3 +31,12 @@ Using the jupyter/pyspark-notebook image, I was able to build an environment rea
 
 
 ## TDD - pytest
+
+## Code Implementation
+
+## Solution Analysis in Jupyter notebook
+
+## Conclusion 
+
+
+**Disclaimer**: This README.md file will be edited and committed outside of GitFlow. I will edit it whenever necessary to provide a clearer explanation of my solution.
