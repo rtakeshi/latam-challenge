@@ -1,5 +1,6 @@
 annotations.md
 infra/modules/provider/gcp_key.json
+*/__pycache__
 
 # Local .terraform directories
 **/.terraform/*
