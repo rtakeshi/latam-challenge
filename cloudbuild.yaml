@@ -14,7 +14,9 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'run'
+      - '--rm' 
       - '-v'
+      - '/home/jovyan/work:/workspace'  
       - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
       - 'pytest'
-      - '/home/jovyan/work/test'
+      - '/workspace/test'
