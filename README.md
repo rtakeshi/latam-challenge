@@ -20,6 +20,10 @@ A CI pipeline was created via the Google Cloud Platform Console.
 
 The main goal of this pipeline is to continuously build and integrate my container into the Artifact Registry.
 
+Unit tests executions will be done in build time with cloud build.
+
+
+
 **Future improvements**:
 
 1. Infra should have its own repository and CI/CD pipeline with Terraform lifecycle.
@@ -31,6 +35,26 @@ Using the jupyter/pyspark-notebook image, I was able to build an environment rea
 
 
 ## TDD - pytest
+
+By using PyTest, I will implement one test scenario for each question's solution.
+
+I will prepare a dataset in staging quality layer to apply the functions; Test datasets will be stored in GCS in the folder "test"; the development will be guided through those test cases.
+
+**Future improvements**
+
+1. It is important to create more test cases scenarios;
+2. Data transformations tests will not be implemented.
+
+
+## Exploratory Data Analysis and Data Transformation
+
+For this case purpose an classical ETL approach will be implemented; 
+
+I will use the Exploratory Data Analysis to discover how to develop the tests cases;
+
+**Future improvements**
+
+1. If this application begins to consume dynamic data, consider implementing an ELT approach.
 
 ## Code Implementation
 
