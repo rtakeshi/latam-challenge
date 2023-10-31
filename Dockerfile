@@ -20,7 +20,8 @@ COPY test /home/jovyan/work/test
 
 #Permission to test directory
 USER root
-RUN chmod -R 777 /home/jovyan/work/test
+RUN chmod -R 777 /home/jovyan/work/test \
+    && chmod -R 777 /home/jovyan 
 RUN useradd -ms /bin/bash pytest_user
 USER pytest_user
 
