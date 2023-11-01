@@ -39,6 +39,41 @@ Using the jupyter/pyspark-notebook image, I was able to build an environment rea
 
 **Difficulties**: When deciding to use a Docker Hub container, I encountered some permission issues when installing new packages in the operating system. To avoid future problems in execution, i decided to use the root user.
 
+## Data Exploration
+
+
+After the initial phase of exploration, it was identified that the "farmers-protest-tweets" file comprises multiple columns, and a schema was created in the "aux > tweet_payload_schema" file. During the discovery process, data curation was carried out to determine which columns would be utilized in the solutions for the questions.
+
+**Disclaimer**: The data was found to be outdated in comparison to the Data dictionary provided by Twitter's documentation.
+
+q1. Las top 10 fechas donde hay más tweets. Mencionar el usuario (username) que más publicaciones tiene por cada uno de esos días.
+
+Columns: id, date, user.username
+
+
+q2. Los top 10 emojis más usados con su respectivo conteo.
+
+Columns: id, content
+
+
+q3. El top 10 histórico de usuarios (username) más influyentes en función del conteo de las menciones (@) que registra cada uno de ellos. 
+
+The "mentionedUsers" at the main tweet level appear to be filled with null values, necessitating the transformation of the content to retrieve the users.
+
+Columns: id, content, user.username
+
+After the data curation process, it was decided to create a staging table with only four columns:
+
+-tweet_id
+
+-tweet_date
+
+-tweet_username
+
+-tweet_content
+
+
+
 ## TDD - pytest
 
 By using PyTest, I will implement one test scenario for each question's solution.
