@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir -r /tmp/requirements.txt
 #Copying src files to be executed in the container
 COPY src /home/jovyan/work/src
 #copying raw data
-COPY data/raw/ /home/jovyan/work/data/raw/
+COPY data/ /home/jovyan/work/data/
 #Copying test files
 COPY test /home/jovyan/work/test
 
