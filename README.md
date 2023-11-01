@@ -31,13 +31,13 @@ Unit tests executions will be done in build time with cloud build.
 2. The cloudbuild.yaml file is hard writen for my free trial account of GCP
 3. We can implement DevSecOps at build time, incorporating SAST (Static Application Security Testing) to evaluate code vulnerabilities and test coverage, as well as SCA (Software Composition Analysis) to provide visibility into requirement vulnerabilities.
 
-**Difficulties**: I faced some problems when building my container. These issues stemmed from my limited knowledge of how to use Docker Hub containers.
+**Difficulties**: I faced some problems when building my container. These issues stemmed from my limited knowledge of how to use Docker Hub jupyter/pyspark container.
 
 ## Docker Container
 
 Using the jupyter/pyspark-notebook image, I was able to build an environment ready for implementing PySpark and Jupyter Notebook. This enables us to maintain consistency in this environment across any machine, simplifying deployment.
 
-**Difficulties**: When deciding to use a Docker Hub container, I encountered some permission issues when installing new packages in the operating system. To avoid future problems in execution, i decided to use the root user.
+**Difficulties**: When deciding to use a Docker Hub container, i encountered some permission issues when installing new packages in the operating system. 
 
 ## Data Exploration
 
@@ -48,40 +48,43 @@ After the initial phase of exploration, it was identified that the "farmers-prot
 
 q1. Las top 10 fechas donde hay más tweets. Mencionar el usuario (username) que más publicaciones tiene por cada uno de esos días.
 
-Columns: id, date, user.username
+**Columns: id, date, user.username**
 
 
 q2. Los top 10 emojis más usados con su respectivo conteo.
 
-Columns: id, content
+**Columns: id, content**
 
 
 q3. El top 10 histórico de usuarios (username) más influyentes en función del conteo de las menciones (@) que registra cada uno de ellos. 
 
 The "mentionedUsers" at the main tweet level appear to be filled with null values, necessitating the transformation of the content to retrieve the users.
 
-Columns: id, content, user.username
+**Columns: id, content, user.username**
 
 After the data curation process, it was decided to create a staging table with only four columns:
 
--tweet_id
+-id
+-date
+-username
+-content
 
--tweet_date
+### Data Quality Check
 
--tweet_username
-
--tweet_content
-
+There are no duplications by tweet ID, and there are no null values in the dataset.
 
 ## Data Transformation
 
 For this purpose, a classical ETL approach will be implemented to extract columns that will be used in the solutions to the questions.
+
+A Jupyter notebook for data transformation will be created at the following path: src/transform/farmers_proest_tweet_transformation.ipynb.
 
 The resulting dataset will be stored in GCS to be read by the functions.
 
 **Future improvements**
 
 1. If this application begins to consume dynamic data, consider implementing an ELT approach.
+2. When dealing with dynamic data, it becomes essential to incorporate data quality checks into the data transformation step.
 
 ## TDD - pytest
 

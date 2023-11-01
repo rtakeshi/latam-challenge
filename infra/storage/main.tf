@@ -14,11 +14,6 @@ resource "google_storage_bucket" "latam_challenge_bucket"{
   labels = {
     "env" = "prod"
   }
-
-  
-
-
- 
   
 }
 
