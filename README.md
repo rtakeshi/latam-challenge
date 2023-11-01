@@ -73,6 +73,15 @@ After the data curation process, it was decided to create a staging table with o
 -tweet_content
 
 
+## Data Transformation
+
+For this purpose, a classical ETL approach will be implemented to extract columns that will be used in the solutions to the questions.
+
+The resulting dataset will be stored in GCS to be read by the functions.
+
+**Future improvements**
+
+1. If this application begins to consume dynamic data, consider implementing an ELT approach.
 
 ## TDD - pytest
 
@@ -83,18 +92,8 @@ I will prepare a dataset in staging quality layer to apply the functions; Test d
 **Future improvements**
 
 1. It is important to create more test cases scenarios;
-2. Data transformations tests will not be implemented.
+2. While data transformation tests are not included in this project, it is crucial to define appropriate scenarios for data integration testing, especially when dealing with dynamic data.
 
-
-## Exploratory Data Analysis and Data Transformation
-
-For this case purpose an classical ETL approach will be implemented; 
-
-I will use the Exploratory Data Analysis to discover how to develop the tests cases;
-
-**Future improvements**
-
-1. If this application begins to consume dynamic data, consider implementing an ELT approach.
 
 ## Code Implementation
 
