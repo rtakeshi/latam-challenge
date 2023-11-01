@@ -7,14 +7,15 @@ FROM jupyter/pyspark-notebook:spark-3.5.0
 COPY requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 
+
+
+
 #Copying src files to be executed in the container
 COPY src /home/jovyan/work/src
-
-
-
-#copying and extracting
-COPY /data/raw/ /home/jovyan/work/data/raw/
-
+#copying raw data
+COPY data/ /home/jovyan/work/data/
+#Copying test files
+COPY test /home/jovyan/work/test
 
 # Exposed port for Jupyter notebook usage
 EXPOSE 8888

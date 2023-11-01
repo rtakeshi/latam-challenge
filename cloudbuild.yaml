@@ -1,6 +1,29 @@
 steps:
+  - name: 'python'
+    entrypoint: 'python'
+    args: ['-m', 'pip', 'install', '--upgrade', 'pip']
+    # Step 1: Install or upgrade pip
+
+  - name: python
+    entrypoint: python
+    args: ['-m', 'pip', 'install', 'build', 'pytest', 'Flask', '--user']
+    # Step 2: Install Python packages 'build', 'pytest', 'Flask' for the current user
+
+  - name: 'python'
+    entrypoint: 'python'
+    args: ['-m', 'pytest', '--junitxml=${SHORT_SHA}_test_log.xml']
+    # Step 3: Run pytest and generate a JUnit XML test report
+
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376', '.']
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
+      - '.'
+    # Step 4: Build a Docker image and tag it with the specified repository and version
+
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376']
-images: ['us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376']
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/terraform-gcp-402419/latam-challenge/pyspark-jupyter:917376'
+    # Step 5: Push the Docker image to Artifact Registry in the specified repository and version
