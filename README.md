@@ -13,6 +13,32 @@ For challenge description go to: https://github.com/rtakeshi/latam-challenge/blo
 5. data-exploration
 
 
+**Disclaimer**: This README.md file will be edited and committed outside of GitFlow. I will edit it whenever necessary to provide a clearer explanation of my solution.
+
+
+## Infra
+
+Using Terraform, i provisioned and created Google Cloud Storage to receive staging data.
+
+### Google Cloud Storage
+
+My Google Cloud Storage bucket, named 'latam-challenge-rtkseo-bucket,' will contain two folders:
+
+'staging': This folder will contain the staging data quality dataset used for solving the questions.
+
+'test': This folder will hold test data related to staging data quality to implement Test-Driven Development (TDD).
+
+The 'allUsers' permission will be granted via the Cloud Console to prevent Terraform from creating public storage by default."
+
+**Future improvements**:
+
+1. Declaring Cloud Build Trigger as Infrastructure as Code (IaC).
+2. Provisioning and creating a Cloud Run instance to receive the built container from the Artifact Registry.
+3. While using a public Google Cloud Storage instance may be acceptable for development and non-sensitive data, it's important to emphasize that security configurations are vital in production environments. Proper IAM permissions, network security, and data access controls are critical to protect sensitive data and ensure compliance with security standards.
+
+**Difficulties**: It was hard to configure my container to use correctly hadoop file system connectors for GCS; i decided to copy my staging data to local container to continue my development
+
+
 ## Build - CI Pipeline for Artifact Registry
 
 A CI pipeline was created via the Google Cloud Platform Console.
@@ -76,6 +102,8 @@ A Jupyter notebook for data transformation will be created at the following path
 
 The resulting dataset will be stored in GCS to be read by the functions.
 
+It was stored using boto3 python package
+
 **Future improvements**
 
 1. If this application begins to consume dynamic data, consider implementing an ELT approach.
@@ -98,29 +126,3 @@ I will prepare a dataset in staging quality layer to apply the functions; Test d
 
 ## Conclusion 
 
-**Disclaimer**: This README.md file will be edited and committed outside of GitFlow. I will edit it whenever necessary to provide a clearer explanation of my solution.
-
-
-
-
-# Discarded ideas
-
-## Infra
-
-Using Terraform, i provisioned and created Google Cloud Storage to receive staging data.
-
-### Google Cloud Storage
-
-My Google Cloud Storage bucket, named 'latam-challenge-rtkseo-bucket,' will contain two folders:
-
-'staging': This folder will contain the staging data quality dataset used for solving the questions.
-
-'test': This folder will hold test data related to staging data quality to implement Test-Driven Development (TDD).
-
-The 'allUsers' permission will be granted via the Cloud Console to prevent Terraform from creating public storage by default."
-
-**Future improvements**:
-
-1. Declaring Cloud Build Trigger as Infrastructure as Code (IaC).
-2. Provisioning and creating a Cloud Run instance to receive the built container from the Artifact Registry.
-3. While using a public Google Cloud Storage instance may be acceptable for development and non-sensitive data, it's important to emphasize that security configurations are vital in production environments. Proper IAM permissions, network security, and data access controls are critical to protect sensitive data and ensure compliance with security standards.

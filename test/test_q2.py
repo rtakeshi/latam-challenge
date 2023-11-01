@@ -12,23 +12,45 @@ sys.path.append(src_directory)
 from q2_memory import q2_memory
 from q2_time import q2_time
 
+TEST_DATA_DIR = "home/jovyan/work/data/test_data.csv"
+
+
 #testing function for q2_memory
 def test_q2_memory():
-    result = q2_memory("hello")
-    result = 42
+    result = q2_memory(TEST_DATA_DIR)
 
-    #define the expected result for dataset
-    expected_result = 42 
+    expected_result =[
+    ("🐱", 19),
+    ("🌞", 17),
+    ("🌍", 15),
+    ("❤️", 10),
+    ("🌸", 10),
+    ("🐱", 10),
+    ("🎉", 9),
+    ("🚀", 8),
+    ("😍", 7),
+    ("😀", 6)
+]
 
-    # assert to verify if it will pass
     assert result == expected_result
 
 
 
 def test_q2_time():
-    result = q2_time("world")
-    result = 42
+    result = q2_time(TEST_DATA_DIR)
+ 
+    expected_result =[
+    ("🐱", 19),
+    ("🌞", 17),
+    ("🌍", 15),
+    ("❤️", 10),
+    ("🌸", 10),
+    ("🐱", 10),
+    ("🎉", 9),
+    ("🚀", 8),
+    ("😍", 7),
+    ("😀", 6)
+]
 
-    expected_result = 42
 
     assert result == expected_result

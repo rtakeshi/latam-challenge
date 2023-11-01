@@ -14,12 +14,12 @@ unique_dates = [fake.date_between(start_date='-1y', end_date='today') for _ in r
 usernames = [fake.user_name() for _ in range(12)]
 
 # Generate 20 tweets with emojis
-emojis = ["😀", "😍", "🚀", "🐱", "🌟", "🌍", "❤️", "🎉"]
+emojis = ["😀", "😍", "🚀", "🐱", "🌟", "🌍", "❤️", "🎉", "🌞", "🌸"]
 for i in range(10):
     for j in range(12):
         random_date = random.choice(unique_dates)
         random_tweet = fake.text() + " " + random.choice(emojis) + "@"+random.choice(usernames)
-        data.append({'id': i * 20 + j + 1, 'username': usernames[i], 'content': random_tweet, 'date': random_date})
+        data.append({'id': i * 20 + j + 1, 'username': random.choice(usernames), 'content': random_tweet, 'date': random_date})
 
 # Create a DataFrame from the list of dictionaries
 df = pd.DataFrame(data)
