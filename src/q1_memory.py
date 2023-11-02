@@ -17,7 +17,7 @@ STAGING_SCHEMA = StructType([
 @profile
 def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
     
-    spark = SparkSession.builder.appName("FarmersProtestTweets_memory").getOrCreate()
+    spark = SparkSession.builder.appName("FarmersProtestTweets").getOrCreate()
     
     df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
     #Top 10 dates with more content
