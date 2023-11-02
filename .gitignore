@@ -3,6 +3,7 @@ infra/modules/provider/gcp_key.json
 src/transform/secrets.json
 src/sandbox.ipynb
 data/test/test_volume_data.csv
+data/test/test_volume_data20gb.csv
 
 # Local .terraform directories
 **/.terraform/*

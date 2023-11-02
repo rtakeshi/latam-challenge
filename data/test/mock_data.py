@@ -4,6 +4,10 @@ from faker import Faker
 from datetime import datetime, timedelta
 
 data = []
+'''
+#
+#Preventing overwrite in test dataset
+#
 
 # Generate 20 unique dates
 fake = Faker()
@@ -24,3 +28,5 @@ df = pd.DataFrame(data)
 
 # Export the DataFrame to a CSV file
 df.to_csv('test_data.csv', index=False, sep="~")
+
+'''

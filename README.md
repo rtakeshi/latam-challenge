@@ -28,7 +28,6 @@ My Google Cloud Storage bucket, named 'latam-challenge-rtkseo-bucket,' will cont
 
 'test': This folder will hold test data related to staging data quality to implement Test-Driven Development (TDD).
 
-The 'allUsers' permission will be granted via the Cloud Console to prevent Terraform from creating public storage by default."
 
 **Future improvements**:
 
@@ -115,9 +114,21 @@ By using PyTest, I will implement one test scenario for each question's solution
 
 I will prepare a dataset in staging quality layer to apply the functions; Test datasets will be stored in my container in the folder "test"; the development will be guided through those test cases.
 
-By using the Python Faker package, I was able to create a mocked dataset to guide my TDD.
+### Mocked Data
 
-I had a hard work using ChatGPT to give me expected results to guide my TDD, i decided to solve the analytics outside this project context to fix my test scenarios, in consequence i had to edit my test case scenario a couple times.
+By using the Python Faker package, I was able to develop two Python programs with the assistance of ChatGPT to generate mocked data for my experimental scenarios.
+
+The mocked data consisted of an ID, date, content using random emojis, random mentions, and usernames.
+
+The "mock_data.py" generated data for my TDD development.
+The "mock_volume_data.py" generated data for the PySpark memory and time usage analysis. By adjusting parameters, I was able to create two datasets with 2.2GB and 20GB of data.
+My mocked data generators are located in the "data/test" folder.
+
+### Developing expected results for test cases
+
+To obtain my expected results for test cases, I encountered difficulties when attempting to automate the generation in ChatGPT. The solution provided was to create a sandbox notebook (not included in this repository) in order to generate the expected results manually.
+
+As a result, for each question's solution, I had to develop a preliminary version in my local sandbox. I understand that this approach is not in line with good TDD (Test-Driven Development) practices.
 
 **Future improvements**
 
@@ -132,9 +143,10 @@ With PySpark's flexibility and parallel processing capabilities, I can efficient
 
 For each question, I will utilize memory usage and execution time measurements.
 
-Memory analizing: Memory profiler cannot read memory registers used by PySpark/JVM i had utilize job analysis in Spark Web UI to understand memory usage in each scenario
+Memory analizing: Memory profiler cannot read memory registers used by PySpark/JVM i had utilize job analysis in Spark Web UI to understand memory usage and execution time in each scenario 
 
-Time: To measure the execution time of my data processing, I'll use the datetime differences approach. In the Jupyter notebook, I will record the start and end times before and after the code execution and calculate the time difference. This will help me assess the performance of my code and identify areas that may benefit from time optimization.
+
+
 
 ### PySpark Memory Optimization
 
@@ -146,7 +158,7 @@ Executor (spark.executor.memory): Memory allocated for task executions and data 
 
 PySpark's read operations are lazy by default. This lazy loading approach is one of the key features of PySpark, and it helps optimize memory usage. Data is only loaded into memory when it's necessary for performing computations or when an action is triggered.
 
-#### Steps to reduce memory usage:
+#### Steps applied to reduce memory usage:
 
 1. Schema definition
 2. Lazy data load by default
@@ -154,12 +166,28 @@ PySpark's read operations are lazy by default. This lazy loading approach is one
 4. Keep data volume in control by the using needs
 
 
-### PySpark Time Optimization
+#### PySpark Time Optimization
 
-### q1_memory
-
-
+Persisting data Memory Only, creating a cache
 
 
-## Conclusion 
+
+
+### Analysis
+
+For this particular case, I will create two different configurations for SparkSessions:
+
+1. The first one, named "FarmersProtestTweets," will have the default SparkSession configuration for memory allocation to executors and drivers.
+2. The second one, "FarmersProtestTweetsOptimization," will allocate 4GB of memory to both the Spark driver and executor.
+
+To better understand the solution i will analyze more deeply the function using 20gb Dataset.
+The main results can be found in src/challenge.ipynb
+
+
+
+
+
+## Conclusions
+
+
 

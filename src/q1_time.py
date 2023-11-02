@@ -15,12 +15,14 @@ STAGING_SCHEMA = StructType([
     StructField("date", DateType(), True) 
 ])
 
+@profile
 def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
         
     spark = SparkSession.builder.appName("FarmersProtestTweetsOptmization").getOrCreate()
 
 
     df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
+    df.persist(StorageLevel.MEMORY_ONLY)
 
     #Top 10 dates with more content
     date_counts = df.groupBy('date').agg(count('content').alias('date_count'))
@@ -44,7 +46,6 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
 
     #ordering by content count by date
     top_users_by_date = top_users_by_date.select(['date', 'username']).orderBy(col('date_count').desc())
-    top_users_by_date.persist(StorageLevel.MEMORY_ONLY)
 
     # Collect dataframe results
     result_collection = top_users_by_date.collect()
