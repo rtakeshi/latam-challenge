@@ -15,12 +15,12 @@ STAGING_SCHEMA = StructType([
     StructField("date", DateType(), True) 
 ])
 
-@profile
 def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
         
-    spark = SparkSession.builder.appName("FarmersProtestTweets").getOrCreate()
+    spark = SparkSession.builder.appName("FarmersProtestTweetsOptmization").getOrCreate()
+
+
     df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
-    df.persist(StorageLevel.MEMORY_ONLY)
 
     #Top 10 dates with more content
     date_counts = df.groupBy('date').agg(count('content').alias('date_count'))
@@ -28,7 +28,6 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
 
     #Joined DF filtering only top 10 dates by inner joining
     filtered_df = df.join(date_counts, 'date', 'inner')
-    filtered_df.persist(StorageLevel.MEMORY_ONLY)
 
     #Counting Users posts on top 10 dates
     user_counts_by_date = filtered_df.groupBy('date', 'date_count', 'username').agg(count('content').alias('user_count'))
@@ -39,7 +38,6 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
 
     #creating rank based in row_number ordering
     user_counts_by_date = user_counts_by_date.withColumn('rank', row_number().over(window_spec))
-    user_counts_by_date.persist(StorageLevel.MEMORY_ONLY)
 
     #getting the Rank1 Username for each date
     top_users_by_date = user_counts_by_date.filter(user_counts_by_date['rank'] == 1)
@@ -51,9 +49,6 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
     # Collect dataframe results
     result_collection = top_users_by_date.collect()
 
-    #Stopping Spark session
-    spark.stop()
-    
 
     #Creating result list of tupples
     result = []

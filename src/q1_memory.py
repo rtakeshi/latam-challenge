@@ -17,7 +17,8 @@ STAGING_SCHEMA = StructType([
 @profile
 def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
     
-    spark = SparkSession.builder.appName("FarmersProtestTweets").getOrCreate()
+    spark = SparkSession.builder.appName("FarmersProtestTweets_memory").getOrCreate()
+    
     df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
     #Top 10 dates with more content
     date_counts = df.groupBy('date').agg(count('content').alias('date_count'))
@@ -45,8 +46,6 @@ def q1_memory(file_path: str) -> List[Tuple[datetime.date, str]]:
     # Collect dataframe results
     result_collection = top_users_by_date.collect()
 
-    #Stopping Spark session
-    spark.stop()
     
 
     #Creating result list of tupples

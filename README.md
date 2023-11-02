@@ -132,7 +132,7 @@ With PySpark's flexibility and parallel processing capabilities, I can efficient
 
 For each question, I will utilize memory usage and execution time measurements.
 
-Memory_profiler: I will analyze each step of my code to understand possible refinements of memory usage during each stage of my data processing. To achieve this, I'll use the memory_profiler library to profile memory consumption at various points in my code. This will provide insights into memory-intensive operations that can be optimized.
+Memory analizing: Memory profiler cannot read memory registers used by PySpark/JVM i had utilize job analysis in Spark Web UI to understand memory usage in each scenario
 
 Time: To measure the execution time of my data processing, I'll use the datetime differences approach. In the Jupyter notebook, I will record the start and end times before and after the code execution and calculate the time difference. This will help me assess the performance of my code and identify areas that may benefit from time optimization.
 
