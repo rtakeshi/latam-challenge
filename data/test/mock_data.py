@@ -3,7 +3,6 @@ import random
 from faker import Faker
 from datetime import datetime, timedelta
 
-# Create a list of dictionaries to store the data
 data = []
 
 # Generate 20 unique dates
@@ -13,7 +12,6 @@ unique_dates = [fake.date_between(start_date='-1y', end_date='today') for _ in r
 # Generate 20 different usernames
 usernames = [fake.user_name() for _ in range(20)]
 
-# Generate 20 tweets with emojis
 emojis = ["😀", "😍", "🚀", "🐱", "🌟", "🌍", "❤️", "🎉", "🌞", "🌸", "🌼", "🎈", "🎂"]
 for i in range(10):
     for j in range(12):
