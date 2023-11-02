@@ -135,18 +135,15 @@ As a result, for each question's solution, I had to develop a preliminary versio
 1. It is important to create more test cases scenarios;
 2. While data transformation tests are not included in this project, it is crucial to define appropriate scenarios for data integration testing, especially when dealing with dynamic data.
 
-## Code Implementation and Solution Analysis 
+## Code Implementation and Solution Analysis
 
-I chose to use PySpark because of its ability to process large volumes of data in a distributed manner, leveraging cluster scalability for future deployments.
+I chose to use PySpark due to its capacity to process extensive datasets in a distributed fashion, capitalizing on cluster scalability for potential deployments.
 
-With PySpark's flexibility and parallel processing capabilities, I can efficiently handle future data growth, making it an ideal choice for Big Data projects and scalable data analysis.
+PySpark's adaptability and parallel processing capabilities allow me to effectively manage future data expansion, rendering it a prime selection for Big Data projects and scalable data analysis.
 
-For each question, I will utilize memory usage and execution time measurements.
+Memory profiler cannot access memory registers utilized by PySpark/JVM. I had to utilize job analysis in the Spark Web UI to comprehend memory usage and execution time in each data volume scenario.
 
-Memory analizing: Memory profiler cannot read memory registers used by PySpark/JVM i had utilize job analysis in Spark Web UI to understand memory usage and execution time in each scenario 
-
-
-
+For this case, I treated every question as an independent job, with the expectation of the existence of a SparkSession to execute it.
 
 ### PySpark Memory Optimization
 
