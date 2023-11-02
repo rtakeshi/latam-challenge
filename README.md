@@ -48,7 +48,7 @@ The main goal of this pipeline is to continuously build and integrate my contain
 **Future improvements**:
 
 1. Infra should have its own repository and CI/CD pipeline with Terraform lifecycle.
-2. The cloudbuild.yaml file is hard writen for my free trial account of GCP
+2. The cloudbuild.yaml file is hard writen for my free trial account of GCP 
 3. We can implement DevSecOps at build time, incorporating SAST (Static Application Security Testing) to evaluate code vulnerabilities and test coverage, as well as SCA (Software Composition Analysis) to provide visibility into requirement vulnerabilities.
 4. Due to the decision to complete the challenge's development locally, it is necessary to integrate unit tests into the CI by setting up the PySpark environment at build time.
 
@@ -180,12 +180,14 @@ For this particular case, I will create two different configurations for SparkSe
 1. The first one, named "FarmersProtestTweets," will have the default SparkSession configuration for memory allocation to executors and drivers.
 2. The second one, "FarmersProtestTweetsOptimization," will allocate 4GB of memory to both the Spark driver and executor.
 
-To better understand the solution i will analyze more deeply the function using 20gb Dataset.
-The main results can be found in src/challenge.ipynb
+In the initial analysis, there were no significant differences in time and memory usage between the real dataset and the 2.2GB dataset in the Q1 memory and time solutions. To gain a better understanding of the solution, I will conduct a more in-depth analysis using a 22GB dataset.
 
+The main results can be found in "src/challenge.ipynb."
 
+**Future improvements**
 
-
+1. Analyzing the Spark UI for all three question scenarios is time-consuming. Therefore, I decided to extrapolate the analysis conducted in Q1 to Q2 and Q3.
+2. While there are different types of data manipulation in all three questions, my technique for optimizing time and memory would be the same for now. I recommend exploring other data optimization techniques in PySpark.
 
 ## Conclusions
 
