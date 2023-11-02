@@ -117,14 +117,50 @@ I will prepare a dataset in staging quality layer to apply the functions; Test d
 
 By using the Python Faker package, I was able to create a mocked dataset to guide my TDD.
 
+I had a hard work using ChatGPT to give me expected results to guide my TDD, i decided to solve the analytics outside this project context to fix my test scenarios, in consequence i had to edit my test case scenario a couple times.
+
 **Future improvements**
 
 1. It is important to create more test cases scenarios;
 2. While data transformation tests are not included in this project, it is crucial to define appropriate scenarios for data integration testing, especially when dealing with dynamic data.
 
-## Code Implementation
+## Code Implementation and Solution Analysis 
 
-## Solution Analysis in Jupyter notebook
+I chose to use PySpark because of its ability to process large volumes of data in a distributed manner, leveraging cluster scalability for future deployments.
+
+With PySpark's flexibility and parallel processing capabilities, I can efficiently handle future data growth, making it an ideal choice for Big Data projects and scalable data analysis.
+
+
+"For each question, I will utilize memory usage and execution time measurements.
+
+Memory_profiler: I will analyze each step of my code to understand possible refinements of memory usage during each stage of my data processing. To achieve this, I'll use the memory_profiler library to profile memory consumption at various points in my code. This will provide insights into memory-intensive operations that can be optimized.
+
+Time: To measure the execution time of my data processing, I'll use the datetime differences approach. In the Jupyter notebook, I will record the start and end times before and after the code execution and calculate the time difference. This will help me assess the performance of my code and identify areas that may benefit from time optimization."
+
+### PySpark Memory Optimization
+
+By default Spark has differents kinds of memory usage:
+
+Storage (spark.driver.memory): Cache and store frequently accessed data, you can cache() or persist() to use Storage memory.
+
+Executor (spark.executor.memory): Memory allocated for task executions and data processing in Spark.
+
+PySpark's read operations are lazy by default. This lazy loading approach is one of the key features of PySpark, and it helps optimize memory usage. Data is only loaded into memory when it's necessary for performing computations or when an action is triggered.
+
+#### Steps to reduce memory usage:
+
+1. Schema definition
+2. Lazy data load by default
+3. No caching and no persistance used
+4. Keep data volume in control by the using needs
+
+
+### PySpark Time Optimization
+
+### q1_memory
+
+
+
 
 ## Conclusion 
 

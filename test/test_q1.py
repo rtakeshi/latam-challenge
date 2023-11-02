@@ -1,6 +1,7 @@
 import pytest
 import sys
 import os
+from datetime import datetime
 
 #adding src directory to sys path
 current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -14,42 +15,36 @@ from q1_time import q1_time
 
 TEST_DATA_DIR = "../data/test/test_data.csv"
 
-#testing function for q1_memory
 def test_q1_memory():
     result = q1_memory(TEST_DATA_DIR)
-    
-
     expected_result = [
-        ("2023-07-13", "katherinepatel"),
-        ("2023-02-13", "joel53"),
-        ("2022-11-08", "dennisemily"),
-        ("2023-09-07", "rachelyoung"),
-        ("2023-04-21", "darleneswanson"),
-        ("2023-09-06", "dennisemily"),
-        ("2023-09-18", "jeffrey20"),
-        ("2023-01-15", "annathompson"),
-        ("2022-11-29", "hernandezrachel"),
-        ("2023-07-30", "katherinepatel")
-]
-
+        (datetime(2023, 7, 13).date(), "rachelyoung"),
+        (datetime(2023, 9, 6).date(), "annathompson"),
+        (datetime(2023, 2, 10).date(), "jeffrey20"),
+        (datetime(2022, 11, 8).date(), "joel53"),
+        (datetime(2023, 2, 13).date(), "joel53"),
+        (datetime(2023, 4, 21).date(), "williamking"),
+        (datetime(2023, 7, 30).date(), "wrightdana"),
+        (datetime(2023, 1, 15).date(), "jennifer56"),
+        (datetime(2023, 9, 7).date(), "elizabeth58"),
+        (datetime(2022, 11, 29).date(), "joel53")
+    ]
     assert result == expected_result
-
 
 
 def test_q1_time():
     result = q1_time(TEST_DATA_DIR)
-
     expected_result = [
-        ("2023-07-13", "katherinepatel"),
-        ("2023-02-13", "joel53"),
-        ("2022-11-08", "dennisemily"),
-        ("2023-09-07", "rachelyoung"),
-        ("2023-04-21", "darleneswanson"),
-        ("2023-09-06", "dennisemily"),
-        ("2023-09-18", "jeffrey20"),
-        ("2023-01-15", "annathompson"),
-        ("2022-11-29", "hernandezrachel"),
-        ("2023-07-30", "katherinepatel")
-]
+        (datetime(2023, 7, 13).date(), "rachelyoung"),
+        (datetime(2023, 9, 6).date(), "annathompson"),
+        (datetime(2023, 2, 10).date(), "jeffrey20"),
+        (datetime(2022, 11, 8).date(), "joel53"),
+        (datetime(2023, 2, 13).date(), "joel53"),
+        (datetime(2023, 4, 21).date(), "williamking"),
+        (datetime(2023, 7, 30).date(), "wrightdana"),
+        (datetime(2023, 1, 15).date(), "jennifer56"),
+        (datetime(2023, 9, 7).date(), "elizabeth58"),
+        (datetime(2022, 11, 29).date(), "joel53")
+    ]
 
     assert result == expected_result

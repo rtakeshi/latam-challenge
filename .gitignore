@@ -1,6 +1,7 @@
 annotations.md
 infra/modules/provider/gcp_key.json
 src/transform/secrets.json
+src/sandbox.ipynb
 
 # Local .terraform directories
 **/.terraform/*
