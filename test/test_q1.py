@@ -20,16 +20,17 @@ def test_q1_memory():
     
 
     expected_result = [
-        ("2022-11-26", "alexisdavis"),
-        ("2023-01-24", "alexisdavis"),
-        ("2023-01-30", "alexisdavis"),
-        ("2023-02-07", "craig48"),
-        ("2023-03-31", "alexisdavis"),
-        ("2023-05-26", "alexisdavis"),
-        ("2023-06-23", "elizabethcampbell"),
-        ("2023-07-25", "alexisdavis"),
-        ("2023-07-31", "alexisdavis"),
-    ]
+        ("2023-07-13", "katherinepatel"),
+        ("2023-02-13", "joel53"),
+        ("2022-11-08", "dennisemily"),
+        ("2023-09-07", "rachelyoung"),
+        ("2023-04-21", "darleneswanson"),
+        ("2023-09-06", "dennisemily"),
+        ("2023-09-18", "jeffrey20"),
+        ("2023-01-15", "annathompson"),
+        ("2022-11-29", "hernandezrachel"),
+        ("2023-07-30", "katherinepatel")
+]
 
     assert result == expected_result
 
@@ -39,15 +40,16 @@ def test_q1_time():
     result = q1_time(TEST_DATA_DIR)
 
     expected_result = [
-        ("2022-11-26", "alexisdavis"),
-        ("2023-01-24", "alexisdavis"),
-        ("2023-01-30", "alexisdavis"),
-        ("2023-02-07", "craig48"),
-        ("2023-03-31", "alexisdavis"),
-        ("2023-05-26", "alexisdavis"),
-        ("2023-06-23", "elizabethcampbell"),
-        ("2023-07-25", "alexisdavis"),
-        ("2023-07-31", "alexisdavis"),
-    ]
+        ("2023-07-13", "katherinepatel"),
+        ("2023-02-13", "joel53"),
+        ("2022-11-08", "dennisemily"),
+        ("2023-09-07", "rachelyoung"),
+        ("2023-04-21", "darleneswanson"),
+        ("2023-09-06", "dennisemily"),
+        ("2023-09-18", "jeffrey20"),
+        ("2023-01-15", "annathompson"),
+        ("2022-11-29", "hernandezrachel"),
+        ("2023-07-30", "katherinepatel")
+]
 
     assert result == expected_result
