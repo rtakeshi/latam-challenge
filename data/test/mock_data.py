@@ -25,4 +25,4 @@ for i in range(10):
 df = pd.DataFrame(data)
 
 # Export the DataFrame to a CSV file
-df.to_csv('test_data.csv', index=False)
+df.to_csv('test_data.csv', index=False, sep="~")

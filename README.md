@@ -45,13 +45,13 @@ A CI pipeline was created via the Google Cloud Platform Console.
 
 The main goal of this pipeline is to continuously build and integrate my container into the Artifact Registry.
 
-Unit tests executions will be done in build time with cloud build.
 
 **Future improvements**:
 
 1. Infra should have its own repository and CI/CD pipeline with Terraform lifecycle.
 2. The cloudbuild.yaml file is hard writen for my free trial account of GCP
 3. We can implement DevSecOps at build time, incorporating SAST (Static Application Security Testing) to evaluate code vulnerabilities and test coverage, as well as SCA (Software Composition Analysis) to provide visibility into requirement vulnerabilities.
+4. Due to the decision to complete the challenge's development locally, it is necessary to integrate unit tests into the CI by setting up the PySpark environment at build time.
 
 **Difficulties**: I faced some problems when building my container. These issues stemmed from my limited knowledge of how to use Docker Hub jupyter/pyspark container.
 
@@ -113,7 +113,9 @@ It was stored using boto3 python package
 
 By using PyTest, I will implement one test scenario for each question's solution.
 
-I will prepare a dataset in staging quality layer to apply the functions; Test datasets will be stored in GCS in the folder "test"; the development will be guided through those test cases.
+I will prepare a dataset in staging quality layer to apply the functions; Test datasets will be stored in my container in the folder "test"; the development will be guided through those test cases.
+
+By using the Python Faker package, I was able to create a mocked dataset to guide my TDD.
 
 **Future improvements**
 

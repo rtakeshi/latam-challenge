@@ -12,7 +12,7 @@ sys.path.append(src_directory)
 from q1_memory import q1_memory
 from q1_time import q1_time
 
-TEST_DATA_DIR = "home/jovyan/work/data/test_data.csv"
+TEST_DATA_DIR = "../data/test/test_data.csv"
 
 #testing function for q1_memory
 def test_q1_memory():
