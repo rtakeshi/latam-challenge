@@ -1,4 +1,44 @@
 from typing import List, Tuple
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import udf, explode, count, col
+from pyspark.sql.types import StructType, StructField, ArrayType, StringType, DateType
+import emoji
+
+
+STAGING_SCHEMA = StructType([
+    StructField("id", StringType(), True),
+    StructField("username", StringType(), True),
+    StructField("content", StringType(), True),
+    StructField("date", DateType(), True) 
+])
 
 def q2_time(file_path: str) -> List[Tuple[str, int]]:
-    pass
+
+    spark = SparkSession.builder.appName("FarmersProtestTweetsOptimize").getOrCreate()
+
+    df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
+    
+    #Defining extract emoji local function to be converted in UDF
+    def extract_emojis(text):
+        return emoji.get_emoji_regexp().findall(text)
+
+
+    #Define UDF
+    extract_emojis_udf = udf(extract_emojis, ArrayType(StringType()))
+
+    
+    #Create a new DF with exploded Array of content using UDF to find Emojis
+    emoji_df = df.withColumn('emoji', explode(extract_emojis_udf(df['content'])))
+
+    #Count and ordering by usage and emoji alphabetical order for tie edge case
+    emoji_counts = emoji_df.groupBy('emoji').agg(count('emoji').alias('count')).orderBy(col("count").desc(), col('emoji')).limit(10)
+
+    result_collection = emoji_counts.collect()
+
+    #Creating result list of tupples
+    result = []
+    for row in result_collection:
+        result.append((row['emoji'], row['count']))
+
+
+    return result

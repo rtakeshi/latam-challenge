@@ -137,36 +137,37 @@ PySpark's read operations are lazy by default. This lazy loading approach is one
 
 #### Steps applied to reduce memory usage:
 
-1. Schema definition
-2. Lazy data load by default
-3. No caching and no persistance used
-4. Keep data volume in control by the using needs
+1. Schema Definition: The first step involved defining the DataFrame schema to optimize memory usage.
+2. Lazy Data Load by Default: Lazy loading was used by default, meaning that data was only loaded when needed, avoiding unnecessary memory consumption.
+3. No Caching or Persistence: Caching and persistence were deliberately avoided, ensuring that data was not stored in memory, thereby conserving resources.
+4. Data Volume Control: To keep data volume in check, data was loaded and manipulated on an as-needed basis, avoiding unnecessary in-memory storage.
 
+These measures helped optimize memory usage during data processing.
 
-#### PySpark Time Optimization
+### PySpark Time Optimization
 
-Persisting data Memory Only, creating a cache
+1. Exclusive SparkSession: I allocated memory exclusively for a dedicated SparkSession, separate from the execution environment of memory-optimized functions.
+2. Explicit Memory Allocation: Within these sessions, I configured specific memory allocations for Spark Storage Memory and Spark Execution Memory.
+3. Optimization Based on Reports: After analyzing job execution reports in the Spark Web UI, I determined the most suitable moments to apply caching and in-memory persistence.
+4. Working in Bottlenecks: I focused on optimizing the execution time of functions at bottleneck points to improve overall performance.
 
 ### Q1 Transformations
 
 1. As my first step, I conducted a basic date-wise tweet count analysis to identify the dates with the highest tweet volumes.
-
 2. After pinpointing the dates with maximum tweet volume, I performed an inner join with my original dataframe to reduce data volume for subsequent phases of my implementations.
-
 3. By obtaining the top 10 dates with the highest tweet counts, I created an analytical window function to rank the users who tweeted on these top 10 days.
-
 4. Afterward, it was straightforward to identify the user with the top rank. In the event of a tie, the tie-breaker criterion was the alphabetical order of usernames.
 
 ### Q2 Transformations
 
 1. By using the Python Emoji Library version 1.4.1, I was able to apply the emoji regex function to extract all the emojis contained within the 'content' column;
-
 2. To accomplish this, I declared a local function named 'extract_emojis' inside the 'q2_memory' and 'q2_time' functions. This function was later converted into a Spark User Defined Function (UDF). While it's generally considered a best practice to declare UDFs at the SparkSession level, for this case solution, i opted to run inside my Q2 funtions to better manipulate my SparkSessions;
-
 3. With the UDF in place, aggregating and counting the emojis found in the data files became a straightforward task.
 
 
 ### Q3 Transformations
+
+
 
 
 ### Analysis
