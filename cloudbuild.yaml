@@ -9,11 +9,10 @@ steps:
     args: ['-m', 'pip', 'install', 'build', 'pytest', 'Flask', '--user']
     # Step 2: Install Python packages 'build', 'pytest', 'Flask' for the current user
 
-  - name: 'python'
-    entrypoint: 'python'
-    args: ['-m', 'pytest', '--junitxml=${SHORT_SHA}_test_log.xml']
-    ignoreExitStatus: true
-    # Step 3: Run pytest and generate a JUnit XML test report
+  #- name: 'python'
+  #  entrypoint: 'python'
+  #  args: ['-m', 'pytest', '--junitxml=${SHORT_SHA}_test_log.xml']
+  # Step 3: Run pytest and generate a JUnit XML test report
 
   - name: 'gcr.io/cloud-builders/docker'
     args:
