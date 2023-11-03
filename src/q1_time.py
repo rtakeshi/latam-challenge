@@ -22,7 +22,6 @@ def q1_time(file_path: str) -> List[Tuple[datetime.date, str]]:
 
 
     df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
-    df.persist(StorageLevel.MEMORY_ONLY)
 
     #Top 10 dates with more content
     date_counts = df.groupBy('date').agg(count('content').alias('date_count'))
