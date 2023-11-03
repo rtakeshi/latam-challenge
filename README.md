@@ -16,26 +16,6 @@ For challenge description go to: https://github.com/rtakeshi/latam-challenge/blo
 **Disclaimer**: This README.md file will be edited and committed outside of GitFlow. I will edit it whenever necessary to provide a clearer explanation of my solution.
 
 
-## Infra
-
-Using Terraform, i provisioned and created Google Cloud Storage to receive staging data.
-
-### Google Cloud Storage
-
-My Google Cloud Storage bucket, named 'latam-challenge-rtkseo-bucket,' will contain two folders:
-
-'staging': This folder will contain the staging data quality dataset used for solving the questions.
-
-'test': This folder will hold test data related to staging data quality to implement Test-Driven Development (TDD).
-
-
-**Future improvements**:
-
-1. Declaring Cloud Build Trigger as Infrastructure as Code (IaC).
-2. Provisioning and creating a Cloud Run instance to receive the built container from the Artifact Registry.
-3. While using a public Google Cloud Storage instance may be acceptable for development and non-sensitive data, it's important to emphasize that security configurations are vital in production environments. Proper IAM permissions, network security, and data access controls are critical to protect sensitive data and ensure compliance with security standards.
-
-**Difficulties**: It was hard to configure my container to use correctly hadoop file system connectors for GCS; i decided to copy my staging data to local container to continue my development
 
 
 ## Build - CI Pipeline for Artifact Registry
@@ -167,7 +147,26 @@ PySpark's read operations are lazy by default. This lazy loading approach is one
 
 Persisting data Memory Only, creating a cache
 
+### Q1 Transformations
 
+1. As my first step, I conducted a basic date-wise tweet count analysis to identify the dates with the highest tweet volumes.
+
+2. After pinpointing the dates with maximum tweet volume, I performed an inner join with my original dataframe to reduce data volume for subsequent phases of my implementations.
+
+3. By obtaining the top 10 dates with the highest tweet counts, I created an analytical window function to rank the users who tweeted on these top 10 days.
+
+4. Afterward, it was straightforward to identify the user with the top rank. In the event of a tie, the tie-breaker criterion was the alphabetical order of usernames.
+
+### Q2 Transformations
+
+1. By using the Python Emoji Library version 1.4.1, I was able to apply the emoji regex function to extract all the emojis contained within the 'content' column;
+
+2. To accomplish this, I declared a local function named 'extract_emojis' inside the 'q2_memory' and 'q2_time' functions. This function was later converted into a Spark User Defined Function (UDF). While it's generally considered a best practice to declare UDFs at the SparkSession level, for this case solution, i opted to run inside my Q2 funtions to better manipulate my SparkSessions;
+
+3. With the UDF in place, aggregating and counting the emojis found in the data files became a straightforward task.
+
+
+### Q3 Transformations
 
 
 ### Analysis
@@ -184,9 +183,30 @@ The main results can be found in "src/challenge.ipynb."
 **Future improvements**
 
 1. Analyzing the Spark UI for all three question scenarios is time-consuming. Therefore, I decided to extrapolate the analysis conducted in Q1 to Q2 and Q3.
-2. While there are different types of data manipulation in all three questions, my technique for optimizing time and memory would be the same for now. I recommend exploring other data optimization techniques in PySpark.
+2. While there are different types of data manipulation in all three questions, my technique for optimizing time and memory would be the same for now. I recommend exploring other data optimization techniques in PySpark (https://spark.apache.org/docs/latest/tuning.html).
 
 ## Conclusions
 
 
 
+
+## Bonus - Infra as a Code
+
+Using Terraform, i provisioned and created Google Cloud Storage to receive staging data.
+
+### Google Cloud Storage
+
+My Google Cloud Storage bucket, named 'latam-challenge-rtkseo-bucket,' will contain two folders:
+
+'staging': This folder will contain the staging data quality dataset used for solving the questions.
+
+'test': This folder will hold test data related to staging data quality to implement Test-Driven Development (TDD).
+
+
+**Future improvements**:
+
+1. Declaring Cloud Build Trigger as Infrastructure as Code (IaC).
+2. Provisioning and creating a Cloud Run instance to receive the built container from the Artifact Registry.
+3. While using a public Google Cloud Storage instance may be acceptable for development and non-sensitive data, it's important to emphasize that security configurations are vital in production environments. Proper IAM permissions, network security, and data access controls are critical to protect sensitive data and ensure compliance with security standards.
+
+**Difficulties**: It was hard to configure my container to use correctly hadoop file system connectors for GCS; i decided to copy my staging data to local container to continue my development
