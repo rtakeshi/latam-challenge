@@ -2,7 +2,7 @@
 
 For challenge description go to: https://github.com/rtakeshi/latam-challenge/blob/main/latam-challenge.md
 
-### Objectives
+## Objectives
 
 1. The primary goal of this case solution is to explore memory usage and optimization within a distributed and scalable data processing environment like Spark.
 2. Exploring scalable cloud solutions such as Cloud Storage, Cloud Build, and Cloud Run in GCP.
@@ -18,14 +18,18 @@ As a bonus, I will also explore Infra as Code concepts to create a Google Cloud 
 
 ## Gitflow
 
-### Branches
 
-1. main
-2. dev
-3. build
-4. test
-5. data-exploration
+I've organized my Gitflow with separate branches to match different contexts of the development activities:
 
+1. main: This branch serves as the primary branch and contains all confirmed, production-ready changes. It receives merges only from the dev branch.
+2. dev: The dev branch is where I integrate the various stages of my development work. It serves as a staging area for the development environment. It's where changes from other feature branches are merged, and it's the primary source for merging into main.
+3. build: The build branch is dedicated to activities related to Continuous Integration (CI) and constructing the container for the solution. It ensures that the application can be built and deployed successfully.
+4. test: In the test branch, I focus on creating test scenarios and handling everything related to Test-Driven Development (TDD). This branch is crucial for ensuring the reliability and quality of the code.
+5. data-exploration: This branch is dedicated to data exploration activities. It's where I work on tasks related to data analysis, exploration, and preparation for the main development efforts.
+6. analysis: The analysis branch is where I concentrate on analytical tasks, including the creation of experimental scenarios, data analysis, and other related activities that help inform decision-making and improvements.
+7. others: Various branches used for resolving the challenge questions.
+
+For my commits, I've applied message patterns to enhance contextual understanding, following the same logic as applied to naming branches
 
 **Disclaimer**: This README.md file will be edited and committed outside of GitFlow. I will edit it whenever necessary to provide a clearer explanation of my solution.
 
@@ -34,7 +38,7 @@ As a bonus, I will also explore Infra as Code concepts to create a Google Cloud 
 
 ## Build - CI Pipeline for Artifact Registry
 
-A CI pipeline was created via the Google Cloud Platform Console.
+A CI pipeline was created via Google Cloud Platform Console.
 
 The main goal of this pipeline is to continuously build and integrate my container into the Artifact Registry.
 
@@ -48,7 +52,7 @@ The main goal of this pipeline is to continuously build and integrate my contain
 
 **Difficulties**: I faced some problems when building my container. These issues stemmed from my limited knowledge of how to use Docker Hub jupyter/pyspark container.
 
-## Docker Container
+### Docker Container
 
 Using the jupyter/pyspark-notebook image, I was able to build an environment ready for implementing PySpark and Jupyter Notebook. This enables us to maintain consistency in this environment across any machine, simplifying deployment.
 
@@ -207,7 +211,28 @@ The main results can be found in "src/challenge.ipynb."
 
 ## Conclusions
 
-1. i could not obtain the same results that i could have in a production environment, i am running a pyspark local run in a single machine. 
+The primary goal of this case solution was to explore memory usage and optimization in a distributed and scalable data processing environment, such as Spark. To achieve this objective, the solution was grounded in the performance analysis of a Spark environment in scenarios with varying data volumes.
+
+The default configuration of a PySpark session without optimizations was used as a control to identify the main bottlenecks that needed optimization. It was identified that in cases involving the reading of simple, unpartitioned data formats like CSV, the primary bottleneck occurred during the initial read due to the time required for resource allocation for the DataFrame, which couldn't leverage parallelism due to the original data structure.
+
+By employing in-memory and disk caching techniques, it was possible to observe a significant reduction in the execution time of these operations, while also increasing the utilization of JVM memory.
+
+To make this solution reproducible and scalable, a Docker image was created, implementing a Jupyter repository image containing a pre-configured PySpark environment. The decision to use a pre-made image presented challenges for various other implementations, including unit testing during the build process.
+
+The implementation of the CI pipeline made it possible to have this environment ready for automated deployment. However, there were instances of build failures due to the difficulty of implementing unit tests during the build process with the chosen Docker image.
+
+With the goal of creating a TDD-based process, test cases were implemented for each of the questions, using mocked datasets to validate the results during development. I encountered difficulties in generating expected results for my tests using the ChatGPT console. At this point, there was a deviation in the test scenario construction process to maintain a suitable TDD flow in question development.
+
+After an initial data analysis, it was found that the best approach for using this data would be to create the concept of Staging since most of the provided data was disposable for meeting the challenge's solution. Therefore, I developed a preliminary stage of data creation in the quality layer at the Staging (Silver) level.
+
+With the assistance of ChatGPT, it was possible to easily develop the necessary transformations to meet the challenge, guided by TDD.
+
+I set up an environment for infrastructure resources to be provisioned through Infrastructure as Code (IaC) within the application's context.
+
+All of this development was carried out in accordance with my planned Gitflow. However, there were numerous incorrect commits, and I found it challenging to manage on my own. These issues arose due to shortcomings in my initial planning of the Gitflow workflow.
+
+Finally, using the set of techniques implemented in this repository, it was possible to meet the challenge's requirements!
+
 
 
 ## Bonus - Infra as Code
