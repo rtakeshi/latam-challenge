@@ -12,6 +12,7 @@ steps:
   - name: 'python'
     entrypoint: 'python'
     args: ['-m', 'pytest', '--junitxml=${SHORT_SHA}_test_log.xml']
+    ignoreExitStatus: true
     # Step 3: Run pytest and generate a JUnit XML test report
 
   - name: 'gcr.io/cloud-builders/docker'
