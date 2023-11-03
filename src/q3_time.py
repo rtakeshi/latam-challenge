@@ -2,6 +2,8 @@ from typing import List, Tuple
 from pyspark.sql import SparkSession
 from pyspark.sql.types import StructType, StructField, StringType, DateType
 from pyspark.sql.functions import regexp_extract, collect_list, explode, count
+from pyspark.storagelevel import StorageLevel
+
 
 STAGING_SCHEMA = StructType([
     StructField("id", StringType(), True),
@@ -16,6 +18,7 @@ def q3_time(file_path: str) -> List[Tuple[str, int]]:
     spark = SparkSession.builder.appName("FarmersProtestTweetsOptmization").getOrCreate()
 
     df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
+    df.persist(StorageLevel.MEMORY_AND_DISK)
 
 
     # Tweet mention regex pattern

@@ -2,10 +2,7 @@
 
 For challenge description go to: https://github.com/rtakeshi/latam-challenge/blob/main/latam-challenge.md
 
-## Introduction
-
 ### Objectives
-
 
 1. The primary goal of this case solution is to explore memory usage and optimization within a distributed and scalable data processing environment like Spark.
 2. Exploring scalable cloud solutions such as Cloud Storage, Cloud Build, and Cloud Run in GCP.
@@ -131,6 +128,7 @@ As a result, for each question's solution, I had to develop a preliminary versio
 
 1. It is important to create more test cases scenarios;
 2. While data transformation tests are not included in this project, it is crucial to define appropriate scenarios for data integration testing, especially when dealing with dynamic data.
+3. In Mocking data, it will be good to create a new Large partioned Parquet file to go deeply in memory usage and optmization.
 
 ## Code Implementation and Solution Analysis
 
@@ -181,6 +179,10 @@ These measures helped optimize memory usage during data processing.
 2. To accomplish this, I declared a local function named 'extract_emojis' inside the 'q2_memory' and 'q2_time' functions. This function was later converted into a Spark User Defined Function (UDF). While it's generally considered a best practice to declare UDFs at the SparkSession level, for this case solution, i opted to run inside my Q2 funtions to better manipulate my SparkSessions;
 3. With the UDF in place, aggregating and counting the emojis found in the data files became a straightforward task.
 
+**Future Improvements**
+
+1. UDF reduce PySpark performance, and make harder to optmize codes outside Spark Environment, to avoid that, is a good practice to develop your own Emoji regex reading expression by using PySpark internal functions.
+
 ### Q3 Transformations
 
 1. By using a regex expression to identify mentions in the content column, I extracted all mentioned users in tweets using the PySpark SQL function regexp_extract with a tweet mention regex pattern.
@@ -192,7 +194,7 @@ These measures helped optimize memory usage during data processing.
 For this particular case, I will create two different configurations for SparkSessions:
 
 1. The first one, named "FarmersProtestTweets" will have the default SparkSession configuration for memory allocation to executors and drivers.
-2. The second one, "FarmersProtestTweetsOptimization," will allocate 4GB of memory to both the Spark driver and executor.
+2. The second one, "FarmersProtestTweetsOptimization," will allocate 2GB of memory to executor and 8gb to storage.
 
 In the initial analysis, there were no significant differences in time and memory usage between the real dataset and the 2.2GB dataset in the Q1 memory and time solutions. To gain a better understanding of the solution, I will conduct a more in-depth analysis using a 22GB dataset.
 
@@ -205,7 +207,7 @@ The main results can be found in "src/challenge.ipynb."
 
 ## Conclusions
 
-
+1. i could not obtain the same results that i could have in a production environment, i am running a pyspark local run in a single machine. 
 
 
 ## Bonus - Infra as Code

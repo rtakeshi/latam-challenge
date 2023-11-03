@@ -2,6 +2,7 @@ from typing import List, Tuple
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import udf, explode, count, col
 from pyspark.sql.types import StructType, StructField, ArrayType, StringType, DateType
+from pyspark.storagelevel import StorageLevel
 import emoji
 
 
@@ -17,7 +18,8 @@ def q2_time(file_path: str) -> List[Tuple[str, int]]:
     spark = SparkSession.builder.appName("FarmersProtestTweetsOptmization").getOrCreate()
 
     df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
-    
+    df.persist(StorageLevel.MEMORY_AND_DISK)
+
     #Defining extract emoji local function to be converted in UDF
     def extract_emojis(text):
       if text is not None:
