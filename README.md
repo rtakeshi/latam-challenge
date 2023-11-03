@@ -181,11 +181,11 @@ These measures helped optimize memory usage during data processing.
 2. To accomplish this, I declared a local function named 'extract_emojis' inside the 'q2_memory' and 'q2_time' functions. This function was later converted into a Spark User Defined Function (UDF). While it's generally considered a best practice to declare UDFs at the SparkSession level, for this case solution, i opted to run inside my Q2 funtions to better manipulate my SparkSessions;
 3. With the UDF in place, aggregating and counting the emojis found in the data files became a straightforward task.
 
-
 ### Q3 Transformations
 
-
-
+1. By using a regex expression to identify mentions in the content column, I extracted all mentioned users in tweets using the PySpark SQL function regexp_extract with a tweet mention regex pattern.
+2. To transform my resulting DataFrame into a user mentions DataFrame, it was necessary to collect mentions in step 1 in an array format for subsequent exploding.
+3. After that, it was straightforward to count and order my data to answer the question.
 
 ### Analysis
 
