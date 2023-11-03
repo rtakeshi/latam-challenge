@@ -14,15 +14,17 @@ STAGING_SCHEMA = StructType([
 
 def q2_time(file_path: str) -> List[Tuple[str, int]]:
 
-    spark = SparkSession.builder.appName("FarmersProtestTweetsOptimize").getOrCreate()
+    spark = SparkSession.builder.appName("FarmersProtestTweetsOptmization").getOrCreate()
 
     df = spark.read.option('delimiter', '~').option('header', True).option('multiline', True).schema(STAGING_SCHEMA).csv(file_path)
     
     #Defining extract emoji local function to be converted in UDF
     def extract_emojis(text):
+      if text is not None:
         return emoji.get_emoji_regexp().findall(text)
-
-
+      else:
+        return []
+      
     #Define UDF
     extract_emojis_udf = udf(extract_emojis, ArrayType(StringType()))
 

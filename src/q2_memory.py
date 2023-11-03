@@ -21,7 +21,10 @@ def q2_memory(file_path: str) -> List[Tuple[str, int]]:
     
     #Defining extract emoji local function to be converted in UDF
     def extract_emojis(text):
+      if text is not None:
         return emoji.get_emoji_regexp().findall(text)
+      else:
+        return []
 
 
     #Define UDF
