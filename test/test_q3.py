@@ -20,17 +20,18 @@ def test_q3_memory():
 
 
     expected_result  = [
-        ('joel53', 6)
-        ('jcole', 5)
-        ('hernandezrachel', 5)
-        ('amyjohnson', 4)
-        ('darleneswanson', 4)
-        ('hayley31', 4)
-        ('jeffrey20', 4)
-        ('lisa42', 4)
-        ('williamking', 4)
-        ('wrightdana', 4)
+        ('@hernandezrachel', 11),
+        ('@lisa42', 10), 
+        ('@hayley31', 9), 
+        ('@wrightdana', 8), 
+        ('@rachelyoung', 7), 
+        ('@rodriguezvictoria', 7), 
+        ('@amyjohnson', 6), 
+        ('@darleneswanson', 6), 
+        ('@joel53', 6), 
+        ('@williamking', 6)
     ]
+
 
     assert result == expected_result
 
@@ -40,16 +41,16 @@ def test_q3_time():
     result = q3_time(TEST_DATA_DIR)
 
     expected_result  = [
-        ('joel53', 6)
-        ('jcole', 5)
-        ('hernandezrachel', 5)
-        ('amyjohnson', 4)
-        ('darleneswanson', 4)
-        ('hayley31', 4)
-        ('jeffrey20', 4)
-        ('lisa42', 4)
-        ('williamking', 4)
-        ('wrightdana', 4)
+        ('@hernandezrachel', 11),
+        ('@lisa42', 10), 
+        ('@hayley31', 9), 
+        ('@wrightdana', 8), 
+        ('@rachelyoung', 7), 
+        ('@rodriguezvictoria', 7), 
+        ('@amyjohnson', 6), 
+        ('@darleneswanson', 6), 
+        ('@joel53', 6), 
+        ('@williamking', 6)
     ]
 
     assert result == expected_result

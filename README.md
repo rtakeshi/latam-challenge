@@ -2,6 +2,23 @@
 
 For challenge description go to: https://github.com/rtakeshi/latam-challenge/blob/main/latam-challenge.md
 
+## Introduction
+
+### Objectives
+
+
+1. The primary goal of this case solution is to explore memory usage and optimization within a distributed and scalable data processing environment like Spark.
+2. Exploring scalable cloud solutions such as Cloud Storage, Cloud Build, and Cloud Run in GCP.
+3. Implement an reproductible environment using Docker ready to execute Jupyter and PySpark
+4. Implement an automated Cloud Build CI for my Docker image to GCP Artifact Registry.
+5. Establishing and adhering to a Git flow to establish an efficient workflow for organizing features, builds, and testing tasks.
+6. Implementing Test-Driven Development (TDD) to address the challenge questions.
+7. Implementing data transformations to define data quality layers.
+8. Exploring analytical data transformation techniques to tackle the challenge questions.
+
+As a bonus, I will also explore Infra as Code concepts to create a Google Cloud Storage (GCS) to store my test and staging datasets.
+
+
 ## Gitflow
 
 ### Branches
@@ -174,7 +191,7 @@ These measures helped optimize memory usage during data processing.
 
 For this particular case, I will create two different configurations for SparkSessions:
 
-1. The first one, named "FarmersProtestTweets," will have the default SparkSession configuration for memory allocation to executors and drivers.
+1. The first one, named "FarmersProtestTweets" will have the default SparkSession configuration for memory allocation to executors and drivers.
 2. The second one, "FarmersProtestTweetsOptimization," will allocate 4GB of memory to both the Spark driver and executor.
 
 In the initial analysis, there were no significant differences in time and memory usage between the real dataset and the 2.2GB dataset in the Q1 memory and time solutions. To gain a better understanding of the solution, I will conduct a more in-depth analysis using a 22GB dataset.
@@ -191,7 +208,7 @@ The main results can be found in "src/challenge.ipynb."
 
 
 
-## Bonus - Infra as a Code
+## Bonus - Infra as Code
 
 Using Terraform, i provisioned and created Google Cloud Storage to receive staging data.
 
