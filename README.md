@@ -101,6 +101,12 @@ The resulting dataset will be stored in GCS to be read by the functions.
 
 It was stored using boto3 python package
 
+
+### Post-Challenge Errata (04/11/2023)
+When this section was written, I was initially planning to implement a refined data quality layer to address my analytical questions. However, in the end, it became clear that it didn't align with the goals of my analysis.
+
+I actually implemented an ELT approach, and, for clarity, this section should be labeled "Data Extraction.
+
 **Future improvements**
 
 1. If this application begins to consume dynamic data, consider implementing an ELT approach.
